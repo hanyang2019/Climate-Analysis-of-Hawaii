@@ -58,10 +58,10 @@ def tobs():
     date_list=[]
     temp_list=[]
     dt_dict={}
-    start_date=dt.date(2015,5,1)-dt.timedelta(days=365)
+    start_date=dt.date(2017,8,23)-dt.timedelta(days=365)
     results=session.query(Measurement.date, Measurement.tobs).\
             filter(Measurement.date>=start_date).\
-            filter(Measurement.date<='2015-05-01').all()
+            filter(Measurement.date<='2017-08-23').all()
     session.close
     for result in results:
         (date, tobs)=result
