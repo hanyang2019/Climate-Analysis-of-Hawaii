@@ -13,6 +13,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     return (
+        f'Available routes<br/>'
         f"/api/v1.0/precipitation<br/>"
         f'/api/v1.0/stations<br/>'
         f'/api/v1.0/tobs<br/>'
@@ -23,52 +24,40 @@ def home():
 @app.route('/api/v1.0/precipitation')
 def prcp():
     session=Session(engine)
-    date_list=[]
-    prcp_list=[]
     dp_dict={}
-    results=session.query(Measurement.date,Measurement.prcp).all()
+    results=session.query(Measurement.date,func.avg(Measurement.prcp)).group_by(Measurement.date).all()
     session.close
+# results return a list of tuples. result is an element of results, thus, a tuple. 
+# exact items in a tuple and add to the empty dictionary created above.
     for result in results:
         (date, prcp)=result
-        date_list.append(date)
-        prcp_list.append(prcp)
-    dp_dict['Date']=date_list
-    dp_dict['PRCP']=prcp_list
+        dp_dict[date]=prcp
     return jsonify(dp_dict)
 
 @app.route('/api/v1.0/stations')
 def station():
     session=Session(engine)
-    station_list=[]
-    name_list=[]
     st_dict={}
     results=session.query(Station.station, Station.name).all()
     session.close
     for result in results:
-        (st,name)=result
-        station_list.append(st)
-        name_list.append(name)
-    st_dict['Station']=station_list
-    st_dict['Name']=name_list
+        (st_no,name)=result
+        st_dict[st_no]=name
     return jsonify(st_dict)
 
 @app.route('/api/v1.0/tobs')
 def tobs():
     session=Session(engine)
-    date_list=[]
-    temp_list=[]
     dt_dict={}
     start_date=dt.date(2017,8,23)-dt.timedelta(days=365)
-    results=session.query(Measurement.date, Measurement.tobs).\
+    results=session.query(Measurement.date, func.avg(Measurement.tobs)).\
             filter(Measurement.date>=start_date).\
-            filter(Measurement.date<='2017-08-23').all()
+            filter(Measurement.date<='2017-08-23').\
+            group_by(Measurement.date).all()
     session.close
     for result in results:
         (date, tobs)=result
-        date_list.append(date)
-        temp_list.append(tobs)
-    dt_dict['Date']=date_list
-    dt_dict['Temperature']=temp_list
+        dt_dict[date]=tobs
     return jsonify(dt_dict)
 
 @app.route('/api/v1.0/<start>')
