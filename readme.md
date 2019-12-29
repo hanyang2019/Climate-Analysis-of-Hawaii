@@ -29,12 +29,11 @@ Use Python (Pandas, and Matplotlib) and SQLAlchemy (ORM queries) to conduct basi
 ## Results
 1. Precipitation Analysis
 
-   ![prcp vs date](https://github.com/hanyang2019/Climate-Analysis-of-Hawaii/blob/master/Daily_Precipitation_in_Hawaii_last_12_months.png?raw=true)
+   ![prcp vs date](Images/Daily_Precipitation_in_Hawaii_last_12_months.png)
 
 2. Station Analysis
 
-   ![histogram](https://github.com/hanyang2019/Climate-Analysis-of-Hawaii/blob/master/histogram.png?raw=true)
-
+   ![histogram](Images/histogram.png)
 
 
 3. Temperature Analysis I
@@ -47,24 +46,22 @@ Use Python (Pandas, and Matplotlib) and SQLAlchemy (ORM queries) to conduct basi
 
 4. Temperature Analysis II
 
-    ![barplot](https://github.com/hanyang2019/Climate-Analysis-of-Hawaii/blob/master/avg_temp_barplot.png?raw=true)
+    ![barplot](Images/avg_temp_barplot.png)
 
-    ![areaplot](https://github.com/hanyang2019/Climate-Analysis-of-Hawaii/blob/master/est_temp_vaction.png?raw=true)
+    ![areaplot](Images/est_temp_vaction.png)
 
 5. Climate App
 * `/`
-    * Home page.
-    * List all routes that are available.
-  * `/api/v1.0/precipitation`
-    * Convert the query results to a Dictionary using date as the key and prcp as the value.
-    * Return the JSON representation of your dictionary.
-  * `/api/v1.0/stations`
-    * Return a JSON list of stations from the dataset.
-  * `/api/v1.0/tobs`
-	* query for the dates and temperature observations from a year from the last data point.
-	* Return a JSON list of Temperature Observations (tobs) for the previous year.
-  * `/api/v1.0/<start>` and `/api/v1.0/<start>/<end>`
-	* Return a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
-	* When given the start only, calculate `TMIN`, `TAVG`, and `TMAX` for all dates greater than and equal to the start date.
-	* When given the start and the end date, calculate the `TMIN`, `TAVG`, and `TMAX` for dates between the start and end date inclusive.
+  ![main](Images/app_images/main.png)
+* `/api/v1.0/precipitation`
+  ![preci](Images/app_images/precipitation.png)
+* `/api/v1.0/stations`
+   ![station](Images/app_images/station.png) 
+* `/api/v1.0/tobs`
+	![tobs](Images/app_images/tobs.png)
+* `/api/v1.0/<start>` 
+  ![start](Images/app_images/start.png)
+* `/api/v1.0/<start>/<end>`
+  ![start_end](Images/app_images/start_end.png)
+	
 
