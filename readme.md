@@ -3,7 +3,8 @@
 ## Background
 Use Python (Pandas, and Matplotlib) and SQLAlchemy (ORM queries) to conduct basic climate analysis and data exploration of Hawaii climate database.
 ## Tools
-
+* Python
+* Sqlite
 ## Objectives
 1. Climate analysis and exploration
 * Precipitation Analysis
